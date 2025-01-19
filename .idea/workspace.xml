@@ -5,16 +5,139 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79da98d4-91da-4007-a419-bf717d3a5e48" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/BBS Password Generator.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interface.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tutorial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/azure.tcl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/password.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark.tcl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/box-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/box-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/box-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/box-invalid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/button-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/card.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/check-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/check-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/check-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/check-tri-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/check-tri-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/check-tri-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/circle-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/circle-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/circle-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/combo-button-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/combo-button-focus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/combo-button-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/down-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/down.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/empty.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/hor-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/hor-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/hor-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/notebook.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/off-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/on-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/on-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/outline-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/outline-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/radio-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/radio-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/radio-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/radio-tri-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/radio-tri-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/radio-tri-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/rect-accent-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/rect-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/rect-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/rect-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/scale-hor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/scale-vert.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/separator.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/size.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/tab-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/tab-disabled.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/tab-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/tick-hor-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/tick-hor-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/tick-hor-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/tick-vert-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/tick-vert-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/tick-vert-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/tree-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/tree-pressed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/up-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/up.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/vert-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/vert-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/dark/vert-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light.tcl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/box-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/box-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/box-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/box-invalid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/button-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/card.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/check-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/check-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/check-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/check-tri-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/check-tri-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/check-tri-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/circle-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/circle-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/circle-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/combo-button-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/combo-button-focus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/combo-button-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/down-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/down.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/empty.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/hor-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/hor-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/hor-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/notebook.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/off-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/off-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/on-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/on-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/on-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/outline-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/outline-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/radio-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/radio-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/radio-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/radio-tri-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/radio-tri-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/radio-tri-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/rect-accent-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/rect-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/rect-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/rect-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/scale-hor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/scale-vert.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/separator.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/size.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/tab-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/tab-disabled.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/tab-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/tick-hor-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/tick-hor-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/tick-hor-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/tick-vert-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/tick-vert-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/tick-vert-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/tree-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/tree-pressed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/up-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/up.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/vert-accent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/vert-basic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/light/vert-hover.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial.py" beforeDir="false" afterPath="$PROJECT_DIR$/tutorial.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,9 +154,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2rncriXW9ihWPaGDOoB8qNhJETb" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -44,18 +170,82 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.generator.executor": "Run",
+    "Python.interface.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/projects/python/BBS Password Generator",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\projects\python\BBS Password Generator" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.interface">
+    <configuration name="generator" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="BBS Password Generator" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/generator.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="interface" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="BBS Password Generator" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/interface.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.interface" />
+        <item itemvalue="Python.generator" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -72,6 +262,7 @@
       <option name="presentableId" value="Default" />
       <updated>1737198479843</updated>
       <workItem from="1737198491586" duration="917000" />
+      <workItem from="1737276148351" duration="15263000" />
     </task>
     <servers />
   </component>
@@ -88,5 +279,12 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/BBS_Password_Generator$interface.coverage" NAME="interface Coverage Results" MODIFIED="1737306229703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BBS_Password_Generator$generator.coverage" NAME="generator Coverage Results" MODIFIED="1737203609011" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
