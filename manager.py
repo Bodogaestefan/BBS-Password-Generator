@@ -1,10 +1,14 @@
 import base64
 import repo, generator, aes
+import tkinter as tk
+from tkinter import ttk
 
 def exists_vault():
     return repo.exists_vault()
 
 def create_vault(vault_name):
+    # if no vault exists, generate password for vault, hash pw, generate salt
+    # create vault record: vault_name, password_hash, generated_salt
     password = generator.generate_bbs_password(
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*-_?")
 
@@ -42,9 +46,31 @@ def create_password(vault, mpw, what_for, password, uname, em_addr):
     repo.create_new_password(what_for, encrypted_pw, uname, em_addr)
 
 
-def delete_password(vault, mpw, what_for):
+class ManagerFrame(ttk.Frame):
+    def __init__(self, master):
+        super().__init__(master)
 
-    if authenticate(vault, mpw):
-        repo.delete_password(what_for)
+        # Configure grid
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_rowconfigure((0, 1, 2, 3), weight=1)
+
+        # Add content
+        label = ttk.Label(self, text="Password Manager", font=("Arial", 18))
+        label.grid(row=0, column=0, pady=20, sticky="n")
+
+        text = ttk.Label(self, text="Store and manage your passwords securely here.",
+                        font=("Arial", 12), wraplength=500, justify="center")
+        text.grid(row=1, column=0, pady=10, sticky="n")
+
+        # Example of adding saved passwords (in memory for simplicity)
+        self.password_list = tk.Listbox(self, font=("Arial", 12), width=40, height=8)
+        self.password_list.grid(row=2, column=0, pady=10, padx=20, sticky="n")
+
+        add_button = ttk.Button(self, text="Add Example Password",
+                               command=self.add_example_password)
+        add_button.grid(row=3, column=0, pady=10, sticky="n")
+
+    def add_example_password(self):
+        self.password_list.insert("end", "example@password123")
 
 

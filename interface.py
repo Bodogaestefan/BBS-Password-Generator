@@ -1,7 +1,9 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, simpledialog
 import generator as gen
 import tutorial as tut
+import manager as man
+import repo as repo
 
 class MainApp(tk.Tk):
     def __init__(self):
@@ -13,6 +15,8 @@ class MainApp(tk.Tk):
         self.resizable(False, False)
         self.iconphoto(False, tk.PhotoImage(file="password.png"))
         self.frames = {}
+        self.initialize_database()
+
 
         # Load the custom dark theme
         self.tk.call("source", "azure.tcl")
@@ -24,7 +28,7 @@ class MainApp(tk.Tk):
         self.grid_columnconfigure(0, weight=1)
 
         # Initialize all frames
-        for FrameClass in (tut.TutorialFrame, gen.GeneratorFrame, ManagerFrame):
+        for FrameClass in (tut.TutorialFrame, gen.GeneratorFrame, man.ManagerFrame):
             frame = FrameClass(self)
             self.frames[FrameClass] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -34,6 +38,8 @@ class MainApp(tk.Tk):
 
         # Show the initial frame
         self.show_frame(tut.TutorialFrame)
+
+        self.check_vault()
 
     def create_navigation_bar(self):
         """Create a navigation bar at the bottom of the window."""
@@ -51,7 +57,7 @@ class MainApp(tk.Tk):
         generator_button = ttk.Button(nav_bar, text="Generator", command=lambda: self.show_frame(gen.GeneratorFrame), style="Accent.TButton")
         generator_button.grid(row=0, column=2, padx=10, pady=10)
 
-        manager_button = ttk.Button(nav_bar, text="Manager", command=lambda: self.show_frame(ManagerFrame), style="Accent.TButton")
+        manager_button = ttk.Button(nav_bar, text="Manager", command=lambda: self.show_frame(man.ManagerFrame), style="Accent.TButton")
         manager_button.grid(row=0, column=3, padx=10, pady=10)
 
         nav_bar.grid(row=2, column=0, sticky="ew")
@@ -61,32 +67,23 @@ class MainApp(tk.Tk):
         frame = self.frames[frame_class]
         frame.tkraise()
 
-class ManagerFrame(tk.Frame):
-    def __init__(self, master):
-        super().__init__(master)
+    def initialize_database(self):
+        repo.create_tables()
 
-        # Configure grid
-        self.grid_columnconfigure(0, weight=1)
-        self.grid_rowconfigure((0, 1, 2, 3), weight=1)
+    def check_vault(self):
+        if not repo.exists_vault():
+            create_vault = simpledialog.askstring("Create Vault", "Enter a name for your new vault:")
+            if create_vault is None:  # User pressed cancel
+                self.destroy()  # Close the main application
+                return
+            # Proceed to create the vault if a name was provided
+            if create_vault.strip():  # Ensure the name is not empty
+                password = man.create_vault(create_vault)
+                if password:
+                    tk.messagebox.showinfo("Vault Created", f"Vault created successfully. Your new vault password is: {password}. Please keep it safe!")
+            else:
+                self.destroy()  # Close the app if no valid name was provided
 
-        # Add content
-        label = tk.Label(self, text="Password Manager", font=("Arial", 18))
-        label.grid(row=0, column=0, pady=20, sticky="n")
-
-        text = tk.Label(self, text="Store and manage your passwords securely here.",
-                        font=("Arial", 12), wraplength=500, justify="center")
-        text.grid(row=1, column=0, pady=10, sticky="n")
-
-        # Example of adding saved passwords (in memory for simplicity)
-        self.password_list = tk.Listbox(self, font=("Arial", 12), width=40, height=8)
-        self.password_list.grid(row=2, column=0, pady=10, padx=20, sticky="n")
-
-        add_button = tk.Button(self, text="Add Example Password", font=("Arial", 12),
-                               command=self.add_example_password)
-        add_button.grid(row=3, column=0, pady=10, sticky="n")
-
-    def add_example_password(self):
-        self.password_list.insert("end", "example@password123")
 
 
 # Run the app
