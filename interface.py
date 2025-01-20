@@ -24,7 +24,7 @@ class MainApp(tk.Tk):
         self.grid_columnconfigure(0, weight=1)
 
         # Initialize all frames
-        for FrameClass in (tut.TutorialFrame, gen.GeneratorFrame, ManagerFrame):
+        for FrameClass in (PasswordCheckerApp, gen.GeneratorFrame, ManagerFrame):
             frame = FrameClass(self)
             self.frames[FrameClass] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -33,7 +33,7 @@ class MainApp(tk.Tk):
         self.create_navigation_bar()
 
         # Show the initial frame
-        self.show_frame(tut.TutorialFrame)
+        self.show_frame(PasswordCheckerApp)
 
     def create_navigation_bar(self):
         """Create a navigation bar at the bottom of the window."""
@@ -45,7 +45,7 @@ class MainApp(tk.Tk):
         nav_bar.grid_columnconfigure((0, 1, 2, 3, 4), weight=1)
 
         # Navigation buttons
-        tutorial_button = ttk.Button(nav_bar, text="Tutorial", command=lambda: self.show_frame(tut.TutorialFrame), style="Accent.TButton")
+        tutorial_button = ttk.Button(nav_bar, text="Tutorial", command=lambda: self.show_frame(PasswordCheckerApp), style="Accent.TButton")
         tutorial_button.grid(row=0, column=1, padx=10, pady=10)
 
         generator_button = ttk.Button(nav_bar, text="Generator", command=lambda: self.show_frame(gen.GeneratorFrame), style="Accent.TButton")
@@ -88,6 +88,61 @@ class ManagerFrame(tk.Frame):
     def add_example_password(self):
         self.password_list.insert("end", "example@password123")
 
+class PasswordCheckerApp(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_rowconfigure((1, 2, 3, 4, 5, 6), weight=1)
+        self.create_widgets()
+
+    def is_password_secure(self, password):
+        if len(password) < 8:
+            return False, "Password must be at least 8 characters long."
+        if not any(char.isdigit() for char in password):
+            return False, "Password must contain at least one digit."
+        if not any(char.isupper() for char in password):
+            return False, "Password must contain at least one uppercase letter."
+        if not any(char.islower() for char in password):
+            return False, "Password must contain at least one lowercase letter."
+        if not any(char in "!@#$%^&*()-_+=" for char in password):
+            return False, "Password must contain at least one special character (!@#$%^&*()-_+=)."
+        return True, "Password is secure."
+
+    def update_progress_bar(self, value):
+        self.security_progress_bar['value'] = value
+
+    def check_password(self):
+        password = self.password_entry.get()
+        secure, message = self.is_password_secure(password)
+        self.result_label.config(text=message, foreground="green" if secure else "red")
+
+        # Update progress bar value based on password security
+        if secure:
+            self.update_progress_bar(100)
+        else:
+            length_score = min(len(password) * 3, 30)
+            digit_score = 10 if any(char.isdigit() for char in password) else 0
+            upper_score = 10 if any(char.isupper() for char in password) else 0
+            lower_score = 10 if any(char.islower() for char in password) else 0
+            special_score = 30 if any(char in "!@#$%^&*()-_+=" for char in password) else 0
+            total_score = length_score + digit_score + upper_score + lower_score + special_score
+            self.update_progress_bar(total_score)
+
+    def create_widgets(self):
+        password_label = ttk.Label(self, text="Enter a password to check its security:", font=("Arial", 12))
+        password_label.grid(row=1, column=0, pady=10, sticky="n")
+
+        self.password_entry = ttk.Entry(self, show="*")
+        self.password_entry.grid(row=2, column=0, pady=10, padx=20, sticky="n")
+
+        check_button = ttk.Button(self, text="Check Password", command=self.check_password)
+        check_button.grid(row=3, column=0, pady=10, sticky="n")
+
+        self.result_label = ttk.Label(self, text="", font=("Arial", 12))
+        self.result_label.grid(row=4, column=0, pady=10, sticky="n")
+
+        self.security_progress_bar = ttk.Progressbar(self, orient="horizontal", length=200, mode="determinate", maximum=100)
+        self.security_progress_bar.grid(row=5, column=0, pady=10, padx=20, sticky="n")
 
 # Run the app
 if __name__ == "__main__":
