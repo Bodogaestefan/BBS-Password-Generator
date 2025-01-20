@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-class PasswordCheckerApp(tk.Frame):
+class TutorialFrame(ttk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.grid_columnconfigure(0, weight=1)
@@ -56,9 +56,3 @@ class PasswordCheckerApp(tk.Frame):
 
         self.security_progress_bar = ttk.Progressbar(self, orient="horizontal", length=200, mode="determinate", maximum=100)
         self.security_progress_bar.grid(row=5, column=0, pady=10, padx=20, sticky="n")
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = PasswordCheckerApp(root)
-    app.pack(expand=True, fill="both")
-    root.mainloop()

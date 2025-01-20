@@ -60,3 +60,9 @@ def delete_password(what_for):
     with sqlite3.connect("../pw_mng.db") as connection:
         cursor = connection.cursor()
         cursor.execute(db_constants.DELETE_PASSWORD, (what_for,))
+
+def create_tables():
+    with sqlite3.connect("../pw_mng.db") as connection:
+        cursor = connection.cursor()
+        cursor.execute(db_constants.CREATE_VAULT_TABLE)
+        cursor.execute(db_constants.CREATE_PW_TABLE)

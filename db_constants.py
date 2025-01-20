@@ -24,3 +24,20 @@ CREATE_PASSWORD = '''
 DELETE_PASSWORD = '''
     DELETE FROM main.vault_pws WHERE what_for = ?;
 '''
+
+CREATE_VAULT_TABLE = '''
+    CREATE TABLE IF NOT EXISTS vault (
+        vault_name TEXT PRIMARY KEY,
+        mpw_hs TEXT,
+        e_k_s TEXT
+    );
+'''
+
+CREATE_PW_TABLE = '''
+    CREATE TABLE IF NOT EXISTS vault_pws (
+        what_for TEXT,
+        uname TEXT,
+        em_addr TEXT,
+        e_pwd BLOB
+    );
+'''
