@@ -48,4 +48,3 @@ def delete_password(vault, mpw, what_for):
         repo.delete_password(what_for)
 
 
-delete_password("main_vault","pehibp0lE2RCFVFuAnrxl2le^yArpVl9","sth")
