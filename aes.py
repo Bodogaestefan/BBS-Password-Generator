@@ -20,8 +20,8 @@ def derive_encryption_key(password, salt):
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),  # Use SHA-256 as the underlying hash function
         length=32,  # Length of the derived key (32 bytes = 256 bits for AES-256)
-        salt=salt,  # Salt
-        iterations= 10 # Number of iterations to make it slower for attackers
+        salt=salt,
+        iterations=10
     )
 
     # Derive the key
@@ -32,7 +32,6 @@ def derive_encryption_key(password, salt):
 
 # AES encryption function
 def encrypt_aes(plaintext, key):
-
     # Convert plaintext to bytes
     plaintext = plaintext.encode()
 
@@ -51,7 +50,6 @@ def encrypt_aes(plaintext, key):
 
 # AES decryption function
 def decrypt_aes(ciphertext, key):
-
     # Create AES cipher in ECB mode
     cipher = Cipher(algorithms.AES(key), modes.ECB())
     decryptor = cipher.decryptor()
@@ -64,7 +62,6 @@ def decrypt_aes(ciphertext, key):
     return unpadded_plaintext.decode()
 
 
-# Unpad function
 def unpad(padded_plaintext):
     padding_length = padded_plaintext[-1]  # Get the last byte value
     return padded_plaintext[:-padding_length]
