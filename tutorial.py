@@ -33,11 +33,11 @@ class TutorialFrame(ttk.Frame):
         if secure:
             self.update_progress_bar(100)
         else:
-            length_score = min(len(password) * 10, 30)
-            digit_score = 20 if any(char.isdigit() for char in password) else 0
-            upper_score = 20 if any(char.isupper() for char in password) else 0
-            lower_score = 20 if any(char.islower() for char in password) else 0
-            special_score = 30 if any(char in "!@#$%^&*()-_+=" for char in password) else 0
+            length_score = min(len(password) * 2, 20)
+            digit_score = 10 if any(char.isdigit() for char in password) else 0
+            upper_score = 10 if any(char.isupper() for char in password) else 0
+            lower_score = 10 if any(char.islower() for char in password) else 0
+            special_score = 20 if any(char in "!@#$%^&*()-_+=" for char in password) else 0
             total_score = length_score + digit_score + upper_score + lower_score + special_score
             self.update_progress_bar(total_score)
 
