@@ -2,7 +2,6 @@ import sqlite3
 import hashlib
 import db_constants
 
-
 def exists_vault():
     with sqlite3.connect("../pw_mng.db") as connection:
         cursor = connection.cursor()
@@ -61,7 +60,6 @@ def retrieve_e_k_s(vault_name):
         e_k_s = cursor.fetchone()[0]
 
     return e_k_s
-
 
 def delete_password(what_for):
     with sqlite3.connect("../pw_mng.db") as connection:
