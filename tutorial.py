@@ -8,6 +8,12 @@ class TutorialFrame(ttk.Frame):
         self.grid_rowconfigure((1, 2, 3, 4, 5, 6), weight=1)
         self.create_widgets()
 
+    def has_consecutive_numbers(self, password):
+        for i in range(len(password) - 1):
+            if password[i].isdigit() and password[i + 1].isdigit():
+                return True
+        return False
+
     def is_password_secure(self, password):
         if len(password) < 8:
             return False, "Password must be at least 8 characters long."
@@ -19,11 +25,11 @@ class TutorialFrame(ttk.Frame):
             return False, "Password must contain at least one lowercase letter."
         if not any(char in "!@#$%^&*()-_+=" for char in password):
             return False, "Password must contain at least one special character (!@#$%^&*()-_+=)."
+        if self.has_consecutive_numbers(password): return False, "Password has consecutive digits"
         return True, "Password is secure."
 
     def update_progress_bar(self, value):
         self.security_progress_bar['value'] = value
-
     def check_password(self):
         password = self.password_entry.get()
         secure, message = self.is_password_secure(password)
@@ -38,7 +44,8 @@ class TutorialFrame(ttk.Frame):
             upper_score = 10 if any(char.isupper() for char in password) else 0
             lower_score = 10 if any(char.islower() for char in password) else 0
             special_score = 20 if any(char in "!@#$%^&*()-_+=" for char in password) else 0
-            total_score = length_score + digit_score + upper_score + lower_score + special_score
+            consec_score = -10 if self.has_consecutive_numbers(password) else 0
+            total_score = length_score + digit_score + upper_score + lower_score + special_score + consec_score
             self.update_progress_bar(total_score)
 
     def create_widgets(self):
