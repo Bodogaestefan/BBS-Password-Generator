@@ -11,6 +11,13 @@ def exists_vault():
 
         return count != 0
 
+def get_vault_name():
+    with sqlite3.connect("../pw_mng.db") as connection:
+        cursor = connection.cursor()
+        cursor.execute(db_constants.GET_VAULT_NAME)
+        vault_name = cursor.fetchone()[0]
+
+    return vault_name
 
 def create_vault(vault_name, mpw_hs, e_k_s):
     with sqlite3.connect("../pw_mng.db") as connection:

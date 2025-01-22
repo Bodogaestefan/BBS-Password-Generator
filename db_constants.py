@@ -41,3 +41,7 @@ CREATE_PW_TABLE = '''
         e_pwd BLOB
     );
 '''
+
+GET_VAULT_NAME = '''
+    SELECT vault_name FROM main.vault;
+'''
