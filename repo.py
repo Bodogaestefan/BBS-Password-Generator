@@ -1,6 +1,8 @@
 import sqlite3
 import hashlib
 import db_constants
+import aes
+import generator
 
 def exists_vault():
     with sqlite3.connect("../pw_mng.db") as connection:
@@ -18,10 +20,16 @@ def get_vault_name():
 
     return vault_name
 
-def create_vault(vault_name, mpw_hs, e_k_s):
+def create_vault(vault_name):
+    password = generator.generate_bbs_password(
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*-_?")
+
+    hashed_pw = aes.hash_password(password)
+    salt = generator.generate_bbs_salt()
+
     with sqlite3.connect("../pw_mng.db") as connection:
         cursor = connection.cursor()
-        cursor.execute(db_constants.CREATE_VAULT, (vault_name, mpw_hs, e_k_s))
+        cursor.execute(db_constants.CREATE_VAULT, (vault_name, hashed_pw, salt))
 
 
 def authenticate(vault, password):
@@ -38,19 +46,33 @@ def authenticate(vault, password):
     return False
 
 
-def retrieve_all_passwords():
+def retrieve_all_passwords(mpw, vault):
     with sqlite3.connect("../pw_mng.db") as connection:
         cursor = connection.cursor()
         cursor.execute(db_constants.RETRIEVE_ALL_PASSWORDS)
         passwords = cursor.fetchall()
 
-    return passwords
+    salt = retrieve_e_k_s(vault)
+    decrypted_passwords = []
+    decryption_key = aes.derive_encryption_key(mpw, salt)
+
+    for pwd in passwords:
+        decr = aes.decrypt_aes(pwd[3], decryption_key)
+        new_pwd = (pwd[0], pwd[1], pwd[2], decr)
+        decrypted_passwords.append(new_pwd)
+
+    return decrypted_passwords
 
 
-def create_new_password(what_for, password, uname=None, em_addr=None):
+def create_new_password(vault, mpw, what_for, password, uname=None, em_addr=None):
+
+    salt = retrieve_e_k_s(vault)
+    encryption_key = aes.derive_encryption_key(mpw, salt)
+    encrypted_pw = aes.encrypt_aes(password, encryption_key)
+
     with sqlite3.connect("../pw_mng.db") as connection:
         cursor = connection.cursor()
-        cursor.execute(db_constants.CREATE_PASSWORD, (what_for, uname, em_addr, password))
+        cursor.execute(db_constants.CREATE_PASSWORD, (what_for, uname, em_addr, encrypted_pw))
 
 
 def retrieve_e_k_s(vault_name):
