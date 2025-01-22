@@ -85,7 +85,7 @@ class MainApp(tk.Tk):
                 return
             # Proceed to create the vault if a name was provided
             if create_vault.strip():  # Ensure the name is not empty
-                password = man.create_vault(create_vault)
+                password = repo.create_vault(create_vault)
                 if password:
                     self.show_vault_created_message(password)
             else:

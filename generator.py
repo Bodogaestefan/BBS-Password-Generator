@@ -2,7 +2,7 @@ import secrets
 import tkinter as tk
 from tkinter import ttk, simpledialog, messagebox
 import repo as repo
-import manager as man
+# import manager as man
 
 def is_prime(n):
     if n <= 1:
@@ -201,7 +201,7 @@ class GeneratorFrame(ttk.Frame):
                 return
 
             # Step 4: Save the password into the table
-            man.create_password(vault_name, check_password, what_for, password, uname, em_addr)
+            repo.create_new_password(vault_name, check_password, what_for, password, uname, em_addr)
 
             # Step 5: Inform the user that the password was saved
             messagebox.showinfo("Success", "Password saved successfully.")
