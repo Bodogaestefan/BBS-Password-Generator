@@ -156,7 +156,7 @@ class GeneratorFrame(ttk.Frame):
 
     def save_password(self):
         # Step 1: Authenticate
-        check_password = simpledialog.askstring("Authenticate", "Enter your vault password:", parent=self)
+        check_password = simpledialog.askstring("Authenticate", "You need administrator permissions to save:", parent=self)
         if check_password is None:
             return  # User pressed cancel
         if not check_password.strip():

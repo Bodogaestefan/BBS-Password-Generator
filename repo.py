@@ -31,6 +31,8 @@ def create_vault(vault_name):
         cursor = connection.cursor()
         cursor.execute(db_constants.CREATE_VAULT, (vault_name, hashed_pw, salt))
 
+    return password
+
 
 def authenticate(vault, password):
     password = password.encode()

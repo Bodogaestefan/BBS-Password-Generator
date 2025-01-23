@@ -102,7 +102,7 @@ class MainApp(tk.Tk):
         # Center the top-level window
         window.update_idletasks()
         width = 300
-        height = 200
+        height = 170
         x = (window.winfo_screenwidth() // 2) - (width // 2)
         y = (window.winfo_screenheight() // 2) - (height // 2)
         window.geometry(f'{width}x{height}+{x}+{y}')
@@ -122,6 +122,10 @@ class MainApp(tk.Tk):
         password_entry.config(state="readonly")  # Make it read-only
         password_entry.pack(pady=10, padx=20, fill="x")
 
+        # Create a frame for the buttons
+        button_frame = ttk.Frame(window)
+        button_frame.pack(pady=10)
+
         # Add a button to copy the password to clipboard
         def copy_to_clipboard():
             self.clipboard_clear()
@@ -130,12 +134,12 @@ class MainApp(tk.Tk):
             tk.messagebox.showinfo("Copied", "Password copied to clipboard!")
             window.destroy()  # Close the window after copying
 
-        copy_button = ttk.Button(window, text="Copy to Clipboard", command=copy_to_clipboard)
-        copy_button.pack(pady=10)
+        copy_button = ttk.Button(button_frame, text="Copy to Clipboard", command=copy_to_clipboard)
+        copy_button.grid(row=0, column=0, padx=5)
 
         # Add a close button to close the window
-        close_button = ttk.Button(window, text="Close", command=window.destroy())
-        close_button.pack(pady=5)
+        close_button = ttk.Button(button_frame, text="Close", command=window.destroy)
+        close_button.grid(row=0, column=1, padx=5)
 
 # Run the app
 if __name__ == "__main__":
