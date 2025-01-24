@@ -17,6 +17,13 @@ class MainApp(tk.Tk):
         self.frames = {}
         self.initialize_database()
 
+        # Center the main window
+        self.update_idletasks()
+        width = 550
+        height = 500
+        x = (self.winfo_screenwidth() // 2) - (width // 2)
+        y = (self.winfo_screenheight() // 2) - (height // 2)
+        self.geometry(f'{width}x{height}+{x}+{y}')
 
         # Load the custom dark theme
         self.tk.call("source", "azure.tcl")
@@ -68,23 +75,71 @@ class MainApp(tk.Tk):
         frame.tkraise()
 
     def initialize_database(self):
-        repo.create_tables()
+        repo.create_tables() # Create the database tables if they don't exist
 
     def check_vault(self):
         if not repo.exists_vault():
-            create_vault = simpledialog.askstring("Create Vault", "Enter a name for your new vault:")
+            create_vault = simpledialog.askstring("Create Vault", "Enter a name for your new vault:", parent=self)
             if create_vault is None:  # User pressed cancel
                 self.destroy()  # Close the main application
                 return
             # Proceed to create the vault if a name was provided
             if create_vault.strip():  # Ensure the name is not empty
-                password = man.create_vault(create_vault)
+                password = repo.create_vault(create_vault)
                 if password:
-                    tk.messagebox.showinfo("Vault Created", f"Vault created successfully. Your new vault password is: {password}. Please keep it safe!")
+                    self.show_vault_created_message(password)
             else:
                 self.destroy()  # Close the app if no valid name was provided
 
+    def show_vault_created_message(self, password):
+        """Display a message with the generated password and allow copying."""
+        # Create a new top-level window
+        window = tk.Toplevel(self)
+        window.title("Vault Created")
+        window.geometry("300x200")
+        window.resizable(False, False)
 
+        # Center the top-level window
+        window.update_idletasks()
+        width = 300
+        height = 170
+        x = (window.winfo_screenwidth() // 2) - (width // 2)
+        y = (window.winfo_screenheight() // 2) - (height // 2)
+        window.geometry(f'{width}x{height}+{x}+{y}')
+
+        # Add a label with instructions
+        label = ttk.Label(
+            window,
+            text="Your new vault password is below. Copy and store it securely!",
+            wraplength=280,
+            justify="center"
+        )
+        label.pack(pady=10)
+
+        # Add an Entry widget to display the password
+        password_entry = ttk.Entry(window, font=("Arial", 12), justify="center")
+        password_entry.insert(0, password)  # Insert the password
+        password_entry.config(state="readonly")  # Make it read-only
+        password_entry.pack(pady=10, padx=20, fill="x")
+
+        # Create a frame for the buttons
+        button_frame = ttk.Frame(window)
+        button_frame.pack(pady=10)
+
+        # Add a button to copy the password to clipboard
+        def copy_to_clipboard():
+            self.clipboard_clear()
+            self.clipboard_append(password)
+            self.update()  # Ensure the clipboard is updated
+            tk.messagebox.showinfo("Copied", "Password copied to clipboard!")
+            window.destroy()  # Close the window after copying
+
+        copy_button = ttk.Button(button_frame, text="Copy to Clipboard", command=copy_to_clipboard)
+        copy_button.grid(row=0, column=0, padx=5)
+
+        # Add a close button to close the window
+        close_button = ttk.Button(button_frame, text="Close", command=window.destroy)
+        close_button.grid(row=0, column=1, padx=5)
 
 # Run the app
 if __name__ == "__main__":

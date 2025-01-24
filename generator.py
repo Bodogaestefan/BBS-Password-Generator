@@ -1,6 +1,8 @@
 import secrets
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, simpledialog, messagebox
+import repo as repo
+# import manager as man
 
 def is_prime(n):
     if n <= 1:
@@ -88,23 +90,28 @@ class GeneratorFrame(ttk.Frame):
         checkbox_frame.grid(row=3, column=1, pady=10, sticky="n")
         checkbox_frame.grid_columnconfigure((0, 1), weight=1)
 
-        # Character type selectors
         self.include_lowercase = tk.BooleanVar(value=False)
         self.include_uppercase = tk.BooleanVar(value=False)
         self.include_digits = tk.BooleanVar(value=False)
         self.include_special = tk.BooleanVar(value=False)
 
-        ttk.Checkbutton(checkbox_frame, text="Include Lowercase", variable=self.include_lowercase).grid(row=0, column=0, sticky="w")
-        ttk.Checkbutton(checkbox_frame, text="Include Uppercase", variable=self.include_uppercase).grid(row=1, column=0, sticky="w")
-        ttk.Checkbutton(checkbox_frame, text="Include Digits", variable=self.include_digits).grid(row=0, column=1, sticky="w")
-        ttk.Checkbutton(checkbox_frame, text="Include Special Characters", variable=self.include_special).grid(row=1, column=1, sticky="w")
+        ttk.Checkbutton(checkbox_frame, text="Include Lowercase", variable=self.include_lowercase).grid(row=0, column=0,
+                                                                                                        sticky="w")
+        ttk.Checkbutton(checkbox_frame, text="Include Uppercase", variable=self.include_uppercase).grid(row=1, column=0,
+                                                                                                        sticky="w")
+        ttk.Checkbutton(checkbox_frame, text="Include Digits", variable=self.include_digits).grid(row=0, column=1,
+                                                                                                  sticky="w")
+        ttk.Checkbutton(checkbox_frame, text="Include Special Characters", variable=self.include_special).grid(row=1,
+                                                                                                               column=1,
+                                                                                                               sticky="w")
 
         # Generated password display
         password_label = ttk.Label(self, text="Generated Password: ", font=("Arial", 12))
         password_label.grid(row=4, column=1, pady=10, sticky="n")
 
         self.password_var = tk.StringVar()
-        password_display = ttk.Entry(self, textvariable=self.password_var, font=("Arial", 12), width=30, state="readonly")
+        password_display = ttk.Entry(self, textvariable=self.password_var, font=("Arial", 12), width=30,
+                                     state="readonly")
         password_display.grid(row=5, column=1, pady=5, sticky="n")
 
         button_frame = ttk.Frame(self)
@@ -148,5 +155,56 @@ class GeneratorFrame(ttk.Frame):
         self.password_var.set(password)
 
     def save_password(self):
-        # Placeholder for saving password to a file or database
-        pass
+        # Step 1: Authenticate
+        check_password = simpledialog.askstring("Authenticate", "You need administrator permissions to save:", parent=self)
+        if check_password is None:
+            return  # User pressed cancel
+        if not check_password.strip():
+            messagebox.showerror("Error", "Password cannot be empty.")
+            return
+
+        vault_name = repo.get_vault_name()
+        key_salt = repo.authenticate(vault_name, check_password)
+        if not key_salt:
+            messagebox.showerror("Authentication Failed", "Please check your credentials and try again.")
+            return
+
+        # Step 2: Collect the password from password_var
+        password = self.password_var.get()
+        if not password:
+            messagebox.showerror("Error", "No password generated.")
+            return
+
+        # Step 3: Ask for details about the password
+        details_window = tk.Toplevel(self)
+        details_window.title("Password Details")
+
+        ttk.Label(details_window, text="What is this password for?").grid(row=0, column=0, padx=10, pady=5)
+        what_for_var = tk.StringVar()
+        ttk.Entry(details_window, textvariable=what_for_var).grid(row=0, column=1, padx=10, pady=5)
+
+        ttk.Label(details_window, text="Username (optional):").grid(row=1, column=0, padx=10, pady=5)
+        uname_var = tk.StringVar()
+        ttk.Entry(details_window, textvariable=uname_var).grid(row=1, column=1, padx=10, pady=5)
+
+        ttk.Label(details_window, text="Email Address (optional):").grid(row=2, column=0, padx=10, pady=5)
+        em_addr_var = tk.StringVar()
+        ttk.Entry(details_window, textvariable=em_addr_var).grid(row=2, column=1, padx=10, pady=5)
+
+        def save_details():
+            what_for = what_for_var.get()
+            uname = uname_var.get()
+            em_addr = em_addr_var.get()
+
+            if not what_for:
+                messagebox.showerror("Error", "The 'What For' field cannot be empty.")
+                return
+
+            # Step 4: Save the password into the table
+            repo.create_new_password(vault_name, check_password, what_for, password, uname, em_addr)
+
+            # Step 5: Inform the user that the password was saved
+            messagebox.showinfo("Success", "Password saved successfully.")
+            details_window.destroy()
+
+        ttk.Button(details_window, text="Save", command=save_details).grid(row=3, column=0, columnspan=2, pady=10)
