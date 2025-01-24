@@ -1,11 +1,11 @@
 import tkinter as tk
 from tkinter import ttk
 
-class TutorialFrame(ttk.Frame):
+class CheckerFrame(ttk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.grid_columnconfigure(0, weight=1)
-        self.grid_rowconfigure((1, 2, 3, 4, 5, 6), weight=1)
+        self.grid_rowconfigure((1, 2, 3, 4, 5), weight=1)
         self.create_widgets()
 
     def has_consecutive_numbers(self, password):
@@ -49,6 +49,8 @@ class TutorialFrame(ttk.Frame):
             self.update_progress_bar(total_score)
 
     def create_widgets(self):
+        title_label = ttk.Label(self, text="Password Checker", font=("Arial", 18))
+        title_label.grid(row=0, column=0, pady=20, sticky="n")
         password_label = ttk.Label(self, text="Enter a password to check its security:", font=("Arial", 12))
         password_label.grid(row=1, column=0, pady=10, sticky="n")
 

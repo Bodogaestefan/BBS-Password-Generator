@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, simpledialog
 import generator as gen
-import tutorial as tut
+import checker as chk
 import manager as man
 import repo as repo
 
@@ -35,7 +35,7 @@ class MainApp(tk.Tk):
         self.grid_columnconfigure(0, weight=1)
 
         # Initialize all frames
-        for FrameClass in (tut.TutorialFrame, gen.GeneratorFrame, man.ManagerFrame):
+        for FrameClass in (chk.CheckerFrame, gen.GeneratorFrame, man.ManagerFrame):
             frame = FrameClass(self)
             self.frames[FrameClass] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -44,7 +44,7 @@ class MainApp(tk.Tk):
         self.create_navigation_bar()
 
         # Show the initial frame
-        self.show_frame(tut.TutorialFrame)
+        self.show_frame(chk.CheckerFrame)
 
         self.check_vault()
 
@@ -58,7 +58,7 @@ class MainApp(tk.Tk):
         nav_bar.grid_columnconfigure((0, 1, 2, 3, 4), weight=1)
 
         # Navigation buttons
-        tutorial_button = ttk.Button(nav_bar, text="Tutorial", command=lambda: self.show_frame(tut.TutorialFrame), style="Accent.TButton")
+        tutorial_button = ttk.Button(nav_bar, text="Checker", command=lambda: self.show_frame(chk.CheckerFrame), style="Accent.TButton")
         tutorial_button.grid(row=0, column=1, padx=10, pady=10)
 
         generator_button = ttk.Button(nav_bar, text="Generator", command=lambda: self.show_frame(gen.GeneratorFrame), style="Accent.TButton")
