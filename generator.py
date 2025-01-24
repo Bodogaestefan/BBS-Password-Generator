@@ -2,7 +2,6 @@ import secrets
 import tkinter as tk
 from tkinter import ttk, simpledialog, messagebox
 import repo as repo
-# import manager as man
 
 def is_prime(n):
     if n <= 1:
